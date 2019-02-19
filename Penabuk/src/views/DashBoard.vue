@@ -1,10 +1,28 @@
 <template>
-  <h1>Hello</h1>
+  <b-container>
+    <h3>Hello</h3>
+  </b-container>
 </template>
 
 <script>
-export default {
+import Card from '@/views/Card.vue'
 
+export default {
+  components: {
+    Card
+  },
+  data () {
+    return {
+      Books: [
+        {
+          id: null,
+          authors: null,
+          image_url: null,
+          price: null
+        }
+      ]
+    }
+  }
 }
 </script>
 

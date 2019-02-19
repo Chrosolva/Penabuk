@@ -1,8 +1,8 @@
 {
-  "name": "y",
+  "name": "penabuk",
   "version": "1.0.0",
   "description": "Penjualan aneka buku",
-  "author": "y",
+  "author": "gunawanhuang222@gmail.com",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -14,6 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.2",
     "jquery": "^3.3.1",
     "vue": "^2.5.2",

@@ -4,24 +4,23 @@
       <div v-for="book in Books" :key="book.id">
         <b-col cols="12">
           <div>
-            <b-card
-              v-bind:title= book.original_title
-              v-bind:img-src= book.image_url
-              img-alt="Image"
-              img-top
-              tag="article"
-              style="max-width: 20rem;"
-              class="mb-2"
-            >
-              <b-card-text>
-                <p>{{book.title}}</p>
-                <p>Rp. {{book.price}} Rating {{book.average_rating}}</p>
-              </b-card-text>
-              <div>
-                <b-button href="#" variant="primary">Buy Now</b-button>
-                <b-button href="#" variant="secondary">Add to WishList</b-button>
-              </div>
-            </b-card>
+            <b-card-group deck>
+              <b-card
+                v-bind:title= book.original_title
+                v-bind:img-src= book.image_url
+                img-alt="Image"
+                img-top
+                tag="article"
+                style="width: 260px;height:350px;"
+                class="mb-2"
+              >
+                <b-card-text>
+                  <p>Rp. {{book.price}} Rating {{book.average_rating}}</p>
+                </b-card-text>
+                <b-button href="#" variant="primary" style="float:left;display:inline;">Buy Now</b-button>
+                <b-button href="#" variant="secondary" style="float:right;display:inline;"><icon name="cart-plus" class="mr-1"></icon>WishList</b-button>
+              </b-card>
+            </b-card-group>
           </div>
         </b-col>
       </div>
@@ -48,5 +47,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .card-img-top {
+    height: 200px;
+  }
+  .card-title, b-card-text{
+    font-size: 14px;
+    padding:0px;
+    margin:0px;
+  }
 </style>

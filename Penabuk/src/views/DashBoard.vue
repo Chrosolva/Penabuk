@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <b-row>
-      <div v-for="book in Books" :key="book.id">
+      <div v-for="book in books" :key="book.id">
         <b-col cols="12">
           <div>
             <b-card-group deck>
@@ -34,13 +34,13 @@ import AuthenthicationService from '@/services/AuthenticationService'
 export default {
   data () {
     return {
-      Books: []
+      books: []
     }
   },
   async mounted () {
     const bookresponse = await AuthenthicationService.getAllbooks()
     console.log(bookresponse.status)
-    this.Books = bookresponse.data.books
+    this.books = bookresponse.data.books
   }
 }
 </script>

@@ -64,14 +64,14 @@ export default {
       }
       try {
         const response = await AuthenthicationService.login(body)
-        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setToken', response.data.user.id)
         this.$store.dispatch('setUser', response.data.user)
         this.error = null
-        this.$router.push({name: 'dashboard'})
       } catch (err) {
         this.showDismissibleAlert = true
         this.error = err.response.data.error
       }
+      this.$router.push({name: 'DashBoard'})
     }
   }
 }

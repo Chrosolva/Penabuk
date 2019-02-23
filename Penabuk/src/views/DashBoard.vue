@@ -11,7 +11,7 @@
                 img-alt="Image"
                 img-top
                 tag="article"
-                style="width: 260px;height:350px;"
+                style="width: 250px;height:350px;"
                 class="mb-2"
               >
                 <b-card-text>

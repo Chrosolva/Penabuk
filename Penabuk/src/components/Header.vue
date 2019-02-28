@@ -1,14 +1,14 @@
 <template>
   <b-container fluid>
-    <b-navbar toggleable="lg" style="background-color:#023847">
+    <b-navbar toggleable="sm" variant="dark" style="background-color:#181c21">
       <b-container>
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
-            <b-nav-item href="#" :to="{ name: 'DashBoard'}" actives> Penabuk </b-nav-item>
+            <b-nav-item href="#" :to="{ name: 'DashBoard'}"> Penabuk </b-nav-item>
             <b-nav-item href="#">Telusuri</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Wish List</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">TOP UP</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">HISTORY</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Top Up</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">History</b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
@@ -20,16 +20,28 @@
                 <icon name="user-plus" class="mr-1"></icon>
                 Register
             </b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">
+            <!-- <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">
                 <div v-if="$store.state.user['role'] == 'admin'">
                 <icon name="cogs" class="mr-1"></icon>
                 Admin Configuration
                 </div>
+            </b-nav-item> -->
+            <b-nav-item v-if="$store.state.isUserLoggedIn">
+              <span style="color:#abf400;">Balance : Rp. {{user.balance}}</span>
             </b-nav-item>
-            <b-nav-item href="#" @click="logout" v-if="$store.state.isUserLoggedIn">
-                <icon name="sign-out" class="mr-1"></icon>
-                Logout
-            </b-nav-item>
+            <div>
+              <b-dropdown v-bind:text="user.name" variant ="primary" v-if="$store.state.isUserLoggedIn" size="sm">
+                <b-dropdown-item href="#" size="sm">
+                  <icon name="edit" class="mr-1"></icon>Edit Profile
+                </b-dropdown-item>
+                <b-dropdown-item href="#" size="sm">
+                  <icon name="edit" class="mr-1"></icon>Change Password
+                </b-dropdown-item>
+                <b-dropdown-item href="#" @click="logout" size="sm">
+                  <icon name="sign-out" class="mr-1"></icon>Log Out
+                </b-dropdown-item>
+              </b-dropdown>
+            </div>
           </b-navbar-nav>
         </b-collapse>
       </b-container>
@@ -38,7 +50,7 @@
 </template>
 
 <script>
-
+import AuthenticationServices from '@/services/AuthenticationService'
 export default {
   methods: {
     navigateTo (route) {
@@ -48,6 +60,20 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({name: 'login'})
+    }
+  },
+  data () {
+    return {
+      user: null
+    }
+  },
+  async mounted () {
+    if (!this.$store.state.isUserLoggedIn) {
+      this.user = null
+    } else {
+      const userresponse = await AuthenticationServices.getUser(this.$store.state.token)
+      this.user = userresponse.data.user
+      console.log(userresponse.data.user)
     }
   }
 }
@@ -59,5 +85,8 @@ export default {
   }
   .container-fluid {
     margin-bottom: 10px;
+    padding:0px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 </style>

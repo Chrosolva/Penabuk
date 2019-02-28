@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-color:#f2f2f2;">
     <PageHeader/>
     <b-container fluid>
       <router-view>

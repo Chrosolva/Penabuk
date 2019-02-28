@@ -10,9 +10,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
+import StarRating from 'vue-star-rating'
 
 Vue.config.productionTip = false
 Vue.component('icon', Icon)
+Vue.component('star-rating', StarRating)
 Vue.use(BootstrapVue)
 
 sync(store, router)

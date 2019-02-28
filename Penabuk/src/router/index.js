@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import DashBoard from '@/views/DashBoard'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+import BookDetails from '@/views/BookDetails'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/books/:id',
+      name: 'BookDetailsNL',
+      component: BookDetails
     }
   ]
 })

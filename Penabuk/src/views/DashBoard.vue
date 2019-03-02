@@ -14,7 +14,7 @@
                 tag="article"
                 style="width: 250px;height:350px;"
                 class="mb-2">
-                <b-card-text>
+                <b-card-text v-bind:name="book.id">
                   <p>Rp. {{book.price}} Rating {{book.average_rating}}</p>
                 </b-card-text>
                 <b-button href="#" variant="primary" style="display:inline;"><icon name="dollar" class="mr-1"></icon>Buy Now</b-button>

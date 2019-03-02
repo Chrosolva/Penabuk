@@ -6,7 +6,7 @@
           <b-navbar-nav>
             <b-nav-item href="#" :to="{ name: 'DashBoard'}"> Penabuk </b-nav-item>
             <b-nav-item href="#">Telusuri</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Wish List</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Cart</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Top Up</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">History</b-nav-item>
           </b-navbar-nav>
@@ -27,10 +27,10 @@
                 </div>
             </b-nav-item> -->
             <b-nav-item v-if="$store.state.isUserLoggedIn">
-              <span style="color:#abf400;">Balance : Rp. {{user.balance}}</span>
+              <span style="color:#abf400;">Balance : Rp. {{this.$store.state.user.balance}}</span>
             </b-nav-item>
             <div>
-              <b-dropdown v-bind:text="user.name" variant ="primary" v-if="$store.state.isUserLoggedIn" size="sm">
+              <b-dropdown v-bind:text="this.$store.state.user.name" variant ="primary" v-if="$store.state.isUserLoggedIn" size="sm">
                 <b-dropdown-item href="#" size="sm">
                   <icon name="edit" class="mr-1"></icon>Edit Profile
                 </b-dropdown-item>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import AuthenticationServices from '@/services/AuthenticationService'
+
 export default {
   methods: {
     navigateTo (route) {
@@ -65,15 +65,6 @@ export default {
   data () {
     return {
       user: null
-    }
-  },
-  async mounted () {
-    if (!this.$store.state.isUserLoggedIn) {
-      this.user = null
-    } else {
-      const userresponse = await AuthenticationServices.getUser(this.$store.state.token)
-      this.user = userresponse.data.user
-      console.log(userresponse.data.user)
     }
   }
 }

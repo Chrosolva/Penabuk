@@ -5,6 +5,8 @@ import DashBoard from '@/views/DashBoard'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import BookDetails from '@/views/BookDetails'
+import PaymentDetails from '@/views/PaymentDetails'
+import Profile from '@/views/Profile'
 
 Vue.use(Router)
 
@@ -34,6 +36,22 @@ export default new Router({
       path: '/books/:id',
       name: 'BookDetailsNL',
       component: BookDetails
+    },
+    {
+      path: '/books/:id?token=:token',
+      name: 'BookDetails',
+      component: BookDetails
+    },
+    {
+      path: '/payments',
+      name: 'PaymentDetails',
+      component: PaymentDetails
+    },
+    {
+      path: '/profile?:token',
+      name: 'Profile',
+      component: Profile
     }
+
   ]
 })

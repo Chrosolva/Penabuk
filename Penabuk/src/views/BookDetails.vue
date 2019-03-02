@@ -15,12 +15,12 @@
     <div class="mt-5 col-sm-5" style="background-color:#fefefe; margin:0 auto;">
       <b-row class="details">
         <b-col cols="sm-4" style="padding:0px; margin-left:0px;">
-          <img :src="book.image_url" alt="book"
+          <img v-if="book" :src="book.image_url" alt="book"
                 class="col-sm-12"
                 style="object-fit:fill;margin-top:0px;padding:0px;"/>
         </b-col>
         <b-col cols="sm-8" style="background-color:#181c21;padding-bottom:10px;">
-          <div style="margin-top:15px;">
+          <div style="margin-top:15px;" v-if="book">
             <p>Judul buku: {{book.title}}</p>
             <p>Penulis : {{book.authors}}</p>
             <p>Tahun Terbit : {{book.original_publication_year}}</p>
@@ -40,7 +40,7 @@
           </p>
         </b-col>
         <b-col>
-          <star-rating v-if="$store.state.isUserLoggedIn"
+          <star-rating v-if="$store.state.isUserLoggedIn && book"
             :rating="book.user_rating"
             :show-rating="false"
             @rating-selected="setRating"
@@ -56,7 +56,7 @@
       </b-row>
       <b-row style="padding-bottom:10px;">
         <b-col>
-          <b-nav-item @click="buy" style="list-style-type:none;">
+          <b-nav-item @click="buy" v-bind:book="this.book" style="list-style-type:none;">
             <b-button href="#" variant="primary" style="float:left;display:inline;">
               <icon name="dollar" class="mr-1"></icon>Buy Now
             </b-button>
@@ -65,7 +65,7 @@
         <b-col>
           <b-nav-item style="list-style-type:none;">
             <b-button href="#" variant="secondary" style="float:right;display:inline;">
-              <icon name="cart-plus" class="mr-1"></icon>WishList
+              <icon name="cart-plus" class="mr-1"></icon>Cart
             </b-button>
           </b-nav-item>
         </b-col>
@@ -123,8 +123,8 @@ export default {
         this.$router.push({name: 'login'})
         console.log(this.$store.state.isUserLoggedIn)
       } else {
-        this.$router.push({name: 'DashBoard'})
         console.log(this.$store.state.isUserLoggedIn)
+        this.$router.push({name: 'PaymentDetails', params: {book: this.book}})
       }
     }
   }

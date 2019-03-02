@@ -9,7 +9,7 @@
             tag="article"
             style="max-width: 20rem;">
       <div>
-      <b-form @submit="login">
+      <b-form @submit="login($event)">
         <b-form-group label="email" align="left">
           <b-form-input type="email"
                         v-model="form.email"
@@ -57,7 +57,8 @@ export default {
     }
   },
   methods: {
-    async login () {
+    async login (event) {
+      event.preventDefault()
       var body = {
         email: this.form.email,
         password: this.form.password

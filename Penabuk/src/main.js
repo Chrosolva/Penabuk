@@ -11,9 +11,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import StarRating from 'vue-star-rating'
+import VeeValidate from 'vee-validate'
 
 Vue.config.productionTip = false
 Vue.component('icon', Icon)
+Vue.use(VeeValidate)
 Vue.component('star-rating', StarRating)
 Vue.use(BootstrapVue)
 

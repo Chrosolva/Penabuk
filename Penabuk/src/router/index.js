@@ -48,7 +48,7 @@ export default new Router({
       component: PaymentDetails
     },
     {
-      path: '/profile?:token',
+      path: '/profile/:token',
       name: 'Profile',
       component: Profile
     }

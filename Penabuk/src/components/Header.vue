@@ -31,7 +31,7 @@
             </b-nav-item>
             <div>
               <b-dropdown v-bind:text="this.$store.state.user.name" variant ="primary" v-if="$store.state.isUserLoggedIn" size="sm">
-                <b-dropdown-item href="#" size="sm">
+                <b-dropdown-item href="#" :to="{name: 'Profile', params: {token: this.$store.state.token}}" size="sm">
                   <icon name="edit" class="mr-1"></icon>Edit Profile
                 </b-dropdown-item>
                 <b-dropdown-item href="#" size="sm">
@@ -59,12 +59,20 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
       this.$router.push({name: 'login'})
     }
   },
   data () {
     return {
       user: null
+    }
+  },
+  mounted () {
+    if (localStorage.getItem('token') != null) {
+      this.$store.dispatch('setToken', localStorage.getItem('token'))
+      this.$store.dispatch('setUser', JSON.parse(localStorage.getItem('user')))
     }
   }
 }
@@ -75,7 +83,7 @@ export default {
     color:#EEEEEE !important;
   }
   .container-fluid {
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     padding:0px;
     margin-left: 0px;
     margin-right: 0px;

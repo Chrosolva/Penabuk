@@ -18,5 +18,20 @@ export default {
   },
   ratebook (token, credentials) {
     return Api().post('books/rate?token=' + token, credentials)
+  },
+  getprovince () {
+    return Api().get('provinces')
+  },
+  getkota (id) {
+    return Api().get('cities?province_id=' + id)
+  },
+  getcamat (cityid) {
+    return Api().get('districts?city_id=' + cityid)
+  },
+  addaddress (token, credentials) {
+    return Api().post('addresses?token=' + token, credentials)
+  },
+  getaddress (token) {
+    return Api().get('addresses?token=' + token)
   }
 }

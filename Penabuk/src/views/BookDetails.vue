@@ -107,9 +107,10 @@ export default {
       try {
         console.log(body)
         const rate = await AuthenticationServices.ratebook(this.$store.state.token, body)
+        this.message = rate.data.message
         this.error = null
         this.showError = false
-        this.success = rate.message
+        this.success = rate.data.message
         this.showSuccess = true
       } catch (err) {
         this.error = 'Rating buku tidak boleh 0'

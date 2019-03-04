@@ -2,8 +2,8 @@
   <div align="center" class="p-2">
     <div>
       <b-alert variant="danger"
-             dismissible
              :show="showError"
+             dismissible
              @dismissed="showError=false" v-html="error">
       </b-alert>
       <b-alert variant="success"
@@ -16,7 +16,7 @@
             tag="article"
             style="max-width: 20rem;">
       <div>
-      <b-form @submit="register">
+      <b-form @submit="register($event)">
         <b-form-group label="email" align="left">
           <b-form-input type="email"
                         v-model="form.email"
@@ -85,7 +85,8 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async register (event) {
+      event.preventDefault()
       if (this.form.password === this.form.confirmpassword) {
         this.error = null
         this.showError = false
@@ -97,17 +98,17 @@ export default {
         }
         try {
           await AuthenthicationService.register(body)
-          this.error = null
-          this.showError = false
-          this.success = this.form.email + ' is successfully registered.'
-          this.showSuccess = true
           this.form.email = ''
           this.form.password = ''
           this.form.name = ''
           this.form.confirmpassword = ''
           this.form.phone_number = ''
+          this.error = null
+          this.showError = false
+          this.success = this.form.email + ' is successfully registered.'
+          this.showSuccess = true
         } catch (err) {
-          this.error = err.response.data.error
+          this.error = err.response.data.message
           this.showError = true
           this.success = null
           this.showSucess = false

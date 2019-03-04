@@ -68,11 +68,13 @@ export default {
         this.$store.dispatch('setToken', response.data.user.id)
         this.$store.dispatch('setUser', response.data.user)
         this.error = null
+        localStorage.setItem('token', this.$store.state.token)
+        localStorage.setItem('user', JSON.stringify(this.$store.state.user))
+        this.$router.push({name: 'DashBoard'})
       } catch (err) {
         this.showDismissibleAlert = true
-        this.error = err.response.data.error
+        this.error = err.response.data.message
       }
-      this.$router.push({name: 'DashBoard'})
     }
   }
 }

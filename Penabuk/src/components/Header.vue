@@ -50,7 +50,7 @@
 </template>
 
 <script>
-
+import AuthenthicationService from '@/services/AuthenticationService'
 export default {
   methods: {
     navigateTo (route) {
@@ -64,15 +64,16 @@ export default {
       this.$router.push({name: 'login'})
     }
   },
-  data () {
-    return {
-      user: null
-    }
-  },
-  mounted () {
+  async mounted () {
     if (localStorage.getItem('token') != null) {
-      this.$store.dispatch('setToken', localStorage.getItem('token'))
+      const userresponse = await AuthenthicationService.getUser(localStorage.getItem('token'))
+      console.log(userresponse.data.user)
+      localStorage.setItem('token', userresponse.data.user.id)
+      localStorage.setItem('user', JSON.stringify(userresponse.data.user))
+      this.$store.dispatch('setToken', parseInt(localStorage.getItem('token')))
       this.$store.dispatch('setUser', JSON.parse(localStorage.getItem('user')))
+    } else {
+      console.log('not logged in')
     }
   }
 }

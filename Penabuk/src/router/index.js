@@ -7,6 +7,7 @@ import Register from '@/views/Register'
 import BookDetails from '@/views/BookDetails'
 import PaymentDetails from '@/views/PaymentDetails'
 import Profile from '@/views/Profile'
+import PaymentSuccess from '@/views/PaymentSuccessful'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ export default new Router({
       path: '/profile/:token',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/payments-success',
+      name: 'PaymentSuccess',
+      component: PaymentSuccess
     }
 
   ]

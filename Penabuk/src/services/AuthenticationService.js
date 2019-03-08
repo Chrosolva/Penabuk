@@ -33,5 +33,8 @@ export default {
   },
   getaddress (token) {
     return Api().get('addresses?token=' + token)
+  },
+  payment (token, credentials) {
+    return Api().post('payments?token=' + token, credentials)
   }
 }

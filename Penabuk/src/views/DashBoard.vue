@@ -17,8 +17,14 @@
                 <b-card-text v-bind:name="book.id">
                   <p>Rp. {{book.price}} Rating {{book.average_rating}}</p>
                 </b-card-text>
-                <b-button href="#" variant="primary" style="display:inline;"><icon name="dollar" class="mr-1"></icon>Buy Now</b-button>
-                <b-button href="#" variant="secondary" style="display:inline;"><icon name="cart-plus" class="mr-1"></icon>WishList</b-button>
+                <div>
+                  <!-- <b-nav-item @click="buy" style="list-style-type:none;float:left;">
+                    <b-button href="#" variant="primary" style="display:inline;"><icon name="dollar" class="mr-1"></icon>Buy</b-button>
+                  </b-nav-item>
+                  <b-nav-item @click="buy(book.id)" style="list-style-type:none;float:right;">
+                    <b-button href="#" variant="secondary" style="display:inline;"><icon name="cart-plus" class="mr-1"></icon>Cart</b-button>
+                  </b-nav-item> -->
+                </div>
               </b-card>
               </router-link>
             </b-card-group>

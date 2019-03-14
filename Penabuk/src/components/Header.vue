@@ -1,14 +1,15 @@
 <template>
   <b-container fluid>
-    <b-navbar toggleable="sm" variant="dark" style="background-color:#181c21">
+    <b-navbar toggleable="sm" style="background-color:#2E8B57;">
       <b-container>
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
             <b-nav-item href="#" :to="{ name: 'DashBoard'}"> Penabuk </b-nav-item>
-            <b-nav-item href="#">Telusuri</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">History</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Cart</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Top Up</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">History</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Profile</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Best Deals</b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
@@ -88,5 +89,8 @@ export default {
     padding:0px;
     margin-left: 0px;
     margin-right: 0px;
+  }
+  .col-8 {
+    margin:0px;
   }
 </style>

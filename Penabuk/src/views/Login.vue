@@ -76,6 +76,9 @@ export default {
         this.error = err.response.data.message
       }
     }
+  },
+  mounted () {
+    console.log(this)
   }
 }
 </script>

@@ -1,10 +1,8 @@
 <template>
   <div id="app" style="background-color:#f8f8f8;">
     <PageHeader/>
-    <b-container fluid>
-      <router-view>
-      </router-view>
-    </b-container>
+    <router-view>
+    </router-view>
     <PageFooter/>
   </div>
 </template>

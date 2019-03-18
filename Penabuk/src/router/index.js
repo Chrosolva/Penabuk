@@ -36,11 +36,6 @@ export default new Router({
     },
     {
       path: '/books/:id',
-      name: 'BookDetailsNL',
-      component: BookDetails
-    },
-    {
-      path: '/books/:id?token=:token',
       name: 'BookDetails',
       component: BookDetails
     },

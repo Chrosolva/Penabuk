@@ -120,10 +120,10 @@ export default {
   },
   async mounted () {
     this.bookid = this.$route.params.id
-    if (!this.$store.state.token) {
+    if (localStorage.getItem('token') != null) {
+      this.bookresponse = await AuthenticationServices.getBookbyIdL(this.bookid, localStorage.getItem('token'))
+    } else {
       this.bookresponse = await AuthenticationServices.getBookbyId(this.bookid)
-    } else if (this.$store.state.token) {
-      this.bookresponse = await AuthenticationServices.getBookbyIdL(this.bookid, this.$store.state.token)
     }
     this.book = this.bookresponse.data.book
     console.log('ini buku')

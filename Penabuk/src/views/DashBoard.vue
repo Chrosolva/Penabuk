@@ -142,11 +142,11 @@ export default {
     },
     bookdetails (bookid) {
       if (!this.$store.state.isUserLoggedIn) {
-        this.$router.push({name: 'BookDetailsNL', params: {id: bookid}})
+        this.$router.push({name: 'BookDetails', params: {id: bookid}})
         console.log(this.$store.state.isUserLoggedIn)
       } else {
         console.log(this.$store.state.isUserLoggedIn)
-        this.$router.push({name: 'BookDetails', params: {id: bookid, token: this.$store.state.token}})
+        this.$router.push({name: 'BookDetails', params: {id: bookid}, query: {token: this.$store.state.token}})
       }
     }
   }

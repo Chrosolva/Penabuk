@@ -16,6 +16,9 @@ export default {
   getBookbyId (bookid) {
     return Api().get('books/' + bookid)
   },
+  getBookbyIdL (bookid, token) {
+    return Api().get('books/' + bookid + '?token=' + token)
+  },
   ratebook (token, credentials) {
     return Api().post('books/rate?token=' + token, credentials)
   },

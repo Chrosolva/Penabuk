@@ -83,7 +83,7 @@
           <b-col style="margin:5PX 0 20PX 5px;">
             <div>
               <b-card-group deck>
-                <router-link :to="{name: 'BookDetailsNL',params:{ id: book.id}}">
+                <b-link @click="bookdetails(book.id)">
                   <b-card
                   v-bind:title= book.original_title
                   v-bind:img-src= book.image_url
@@ -104,7 +104,7 @@
                     </b-nav-item> -->
                   </div>
                 </b-card>
-                </router-link>
+                </b-link>
               </b-card-group>
             </div>
           </b-col>
@@ -139,6 +139,15 @@ export default {
       this.sliding = false
     },
     search () {
+    },
+    bookdetails (bookid) {
+      if (!this.$store.state.isUserLoggedIn) {
+        this.$router.push({name: 'BookDetailsNL', params: {id: bookid}})
+        console.log(this.$store.state.isUserLoggedIn)
+      } else {
+        console.log(this.$store.state.isUserLoggedIn)
+        this.$router.push({name: 'BookDetails', params: {id: bookid, token: this.$store.state.token}})
+      }
     }
   }
 }

@@ -1,15 +1,15 @@
 <template>
   <b-container fluid>
-    <b-navbar toggleable="sm" style="background-color:#2E8B57;">
+    <b-navbar toggleable="sm" style="background-color:#00874a;border:2px solid #eeeeee;">
       <b-container>
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
-            <b-nav-item href="#" :to="{ name: 'DashBoard'}"> Penabuk </b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">History</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Cart</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Top Up</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Profile</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn">Best Deals</b-nav-item>
+            <b-nav-item href="#" :to="{ name: 'DashBoard'}" style="margin-top:0px;padding-top:0px;"><span style="color:#e2ed40 !important;font-size: 22px;font-weight: 500;">Penabuk</span></b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">History</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Cart</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Top Up</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Profile</b-nav-item>
+            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Best Deals</b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
@@ -28,10 +28,10 @@
                 </div>
             </b-nav-item> -->
             <b-nav-item v-if="$store.state.isUserLoggedIn">
-              <span style="color:#abf400;">Balance : Rp. {{this.$store.state.user.balance}}</span>
+              <span style="color:#e2ed40;">Balance : Rp. {{this.$store.state.user.balance}}</span>
             </b-nav-item>
             <div>
-              <b-dropdown v-bind:text="this.$store.state.user.name" variant ="primary" v-if="$store.state.isUserLoggedIn" size="sm">
+              <b-dropdown v-bind:text="this.$store.state.user.name" variant ="dark" v-if="$store.state.isUserLoggedIn" size="sm" style="margin-top:6px;">
                 <b-dropdown-item href="#" :to="{name: 'Profile', params: {token: this.$store.state.token}}" size="sm">
                   <icon name="edit" class="mr-1"></icon>Edit Profile
                 </b-dropdown-item>
@@ -81,9 +81,9 @@ export default {
 </script>
 
 <style scoped>
-  .nav-link {
-    color:#EEEEEE !important;
-  }
+.nav-link {
+  color:#fefefe !important;
+}
   .container-fluid {
     padding-bottom: 10px;
     padding:0px;
@@ -92,5 +92,9 @@ export default {
   }
   .col-8 {
     margin:0px;
+  }
+  span {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 5px !important;
   }
 </style>

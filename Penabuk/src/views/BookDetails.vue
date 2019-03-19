@@ -32,7 +32,7 @@
               active-color="#0b7fdd"
               v-bind:star-size="30" style="color:#181c21;"></star-rating>
           </div>
-          <b-link style="list-style-type:none;width:20px;">
+          <b-link @click="addCart(book.id)" style="list-style-type:none;width:20px;">
             <b-button href="#" variant="success" class="form-control col-sm-4" style="margin:20px 0;padding:0;float:left;">
               <icon name="cart-plus" class="mr-1"></icon>Cart
             </b-button>
@@ -178,6 +178,25 @@ export default {
     },
     showcount () {
       console.log(this.count)
+    },
+    async addCart (bookid) {
+      var body = {
+        book_id: bookid
+      }
+      try {
+        console.log(body)
+        const addtocartResponse = await AuthenticationServices.addtocarts(this.$store.state.token, body)
+        this.message = addtocartResponse.data.message
+        this.error = null
+        this.showError = false
+        this.success = addtocartResponse.data.message
+        this.showSuccess = true
+      } catch (err) {
+        this.error = err.addtocartResponse.data.message
+        this.showError = true
+        this.success = null
+        this.showSucess = false
+      }
     }
   }
 }

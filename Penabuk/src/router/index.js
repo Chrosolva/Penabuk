@@ -9,6 +9,7 @@ import PaymentDetails from '@/views/PaymentDetails'
 import Profile from '@/views/Profile'
 import PaymentSuccess from '@/views/PaymentSuccessful'
 import ViewAll from '@/views/ViewAll'
+import Cart from '@/views/Cart'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/browse',
       name: 'ViewAll',
       component: ViewAll
+    },
+    {
+      path: '/carts',
+      name: 'Cart',
+      component: Cart
     }
   ]
 })

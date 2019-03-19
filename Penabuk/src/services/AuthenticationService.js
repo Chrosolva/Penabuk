@@ -39,5 +39,11 @@ export default {
   },
   payment (token, credentials) {
     return Api().post('payments?token=' + token, credentials)
+  },
+  getallcarts (token) {
+    return Api().get('carts?token=' + token)
+  },
+  addtocarts (token, credentials) {
+    return Api().post('carts?token=' + token, credentials)
   }
 }

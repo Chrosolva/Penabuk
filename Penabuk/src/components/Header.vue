@@ -6,7 +6,7 @@
           <b-navbar-nav>
             <b-nav-item href="#" :to="{ name: 'DashBoard'}" style="margin-top:0px;padding-top:0px;"><span style="color:#e2ed40 !important;font-size: 22px;font-weight: 500;">Penabuk</span></b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">History</b-nav-item>
-            <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Cart</b-nav-item>
+            <b-nav-item href="#" @click="toCart" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Cart</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Top Up</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Profile</b-nav-item>
             <b-nav-item href="#" v-if="$store.state.isUserLoggedIn" style="margin-top:8px;">Best Deals</b-nav-item>
@@ -63,6 +63,9 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
       this.$router.push({name: 'login'})
+    },
+    toCart () {
+      this.$router.push({name: 'Cart', query: {token: this.$store.state.token}})
     }
   },
   async mounted () {

@@ -45,5 +45,8 @@ export default {
   },
   addtocarts (token, credentials) {
     return Api().post('carts?token=' + token, credentials)
+  },
+  removecarts (id, token) {
+    return Api().post('remove/cart/id=' + id + '?token=' + token)
   }
 }

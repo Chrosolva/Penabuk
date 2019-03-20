@@ -115,7 +115,8 @@ export default {
       showSuccess: false,
       reviewText: null,
       count: 1,
-      bookresponse: null
+      bookresponse: null,
+      books: []
     }
   },
   async mounted () {
@@ -166,6 +167,12 @@ export default {
       }
     },
     buy () {
+      var body = {
+        cart_id: 0,
+        book: this.book,
+        count: this.count
+      }
+      this.books.push(body)
       console.log(this.book)
       console.log('ini count' + this.count)
       if (!this.$store.state.isUserLoggedIn) {
@@ -173,7 +180,7 @@ export default {
         console.log(this.$store.state.isUserLoggedIn)
       } else {
         console.log(this.$store.state.isUserLoggedIn)
-        this.$router.push({name: 'PaymentDetails', params: {book: this.book, count: this.count}})
+        this.$router.push({name: 'PaymentDetails', params: {orders: this.books}})
       }
     },
     showcount () {

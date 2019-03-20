@@ -80,7 +80,7 @@ import AuthenticationServices from '@/services/AuthenticationService'
 export default {
   data () {
     return {
-      book: null,
+      orders: [],
       AddressOptions: [],
       selectedAddress: null,
       count: 1,
@@ -94,7 +94,8 @@ export default {
     }
   },
   async mounted () {
-    this.book = this.$route.params.book
+    this.orders = this.$route.params.orders
+    console.log(this.orders)
     const addressresponse = await AuthenticationServices.getaddress(this.$store.state.token)
     console.log(addressresponse.data.addresses)
     for (var i = 0; i < addressresponse.data.addresses.length; i++) {
